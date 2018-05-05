@@ -24,7 +24,7 @@ import java.io.File;
 //@EnableWebMvc
 //@PropertySource("classpath:/tomcat.https.properties")
 //@EnableConfigurationProperties(WebConfig.TomcatSslConnectorProperties.class)
-@ComponentScan
+//@ComponentScan
 public class WebConfig extends WebMvcConfigurerAdapter {
 //    @ConfigurationProperties(prefix = "custom.tomcat.https")
 //    public static class TomcatSslConnectorProperties {
@@ -124,11 +124,17 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/css/static/**").addResourceLocations("classpath:/public/static/");
+        registry.addResourceHandler("/static/css/static/**").addResourceLocations("classpath:/static/");
         registry.addResourceHandler("/static/file/**").addResourceLocations("classpath:/templates/");
-        registry.addResourceHandler("/css/**").addResourceLocations("classpath:/public/static/css/");
-        registry.addResourceHandler("/js/**").addResourceLocations("classpath:/public/static/js/");
-        registry.addResourceHandler("/img/**").addResourceLocations("classpath:/public/static/img/");
+//        registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
+//        registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
+//        registry.addResourceHandler("/img/**").addResourceLocations("classpath:/static/img/");
+        registry.addResourceHandler("/public/static/**").addResourceLocations("classpath:/public/static/");
+    }
+
+    @Override
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+        configurer.enable();
     }
 
 
